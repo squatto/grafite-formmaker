@@ -3,6 +3,7 @@
 namespace Grafite\FormMaker\Forms;
 
 use Grafite\FormMaker\Forms\Form;
+use Grafite\FormMaker\Builders\AssetBuilder;
 
 class HtmlForm extends Form
 {
@@ -122,6 +123,8 @@ class HtmlForm extends Form
 
         $lastRowInForm .= '</div></div>'.$this->close();
 
+        $lastRowInForm .= $this->getFormAssets();
+
         return $lastRowInForm;
     }
 
@@ -133,6 +136,25 @@ class HtmlForm extends Form
     public function setSections()
     {
         return [array_keys($this->parseFields($this->fields()))];
+    }
+
+    /**
+     * Get the Field assets as a collection
+     *
+     * @return string
+     */
+    public function getFormAssets()
+    {
+        $assets = '';
+
+        $assetBuilder = app(AssetBuilder::class);
+
+        foreach ($this->parseFields($this->fields()) as $field) {
+            $assets .= $assetBuilder->asset($field['css_assets'], '<link rel="stylesheet" type="text/css" href="_asset_">');
+            $assets .= $assetBuilder->asset($field['javascript_assets'], '<script href="_asset_"></script>');
+        }
+
+        return $assets;
     }
 
     /**

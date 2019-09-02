@@ -6,6 +6,8 @@ class Field
 {
     const FIELD_OPTIONS = [
         'type',
+        'javascript_assets',
+        'css_assets',
         'options',
         'legend',
         'label',
@@ -59,6 +61,26 @@ class Field
     }
 
     /**
+     * Get JavaScript assets
+     *
+     * @return array
+     */
+    protected static function getJavaScriptAssets()
+    {
+        return [];
+    }
+
+    /**
+     * Get CSS assets
+     *
+     * @return array
+     */
+    protected static function getCssAssets()
+    {
+        return [];
+    }
+
+    /**
      * Make a field config for the FieldMaker
      *
      * @param string $name
@@ -74,6 +96,8 @@ class Field
             $name => [
                 'type' => static::getType(),
                 'options' => array_merge(static::getSelectOptions(), $options['options'] ?? []),
+                'javascript_assets' => array_merge(static::getJavaScriptAssets(), $options['javascript_assets'] ?? []),
+                'css_assets' => array_merge(static::getCssAssets(), $options['css_assets'] ?? []),
                 'format' => $options['format'] ?? null,
                 'legend' => $options['legend'] ?? null,
                 'label' => $options['label'] ?? null,

@@ -2,7 +2,9 @@
 
 namespace Grafite\FormMaker;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Grafite\FormMaker\Providers\RouteProvider;
 use Grafite\FormMaker\Commands\MakeFieldCommand;
 use Grafite\FormMaker\Commands\MakeBaseFormCommand;
 use Grafite\FormMaker\Commands\MakeModelFormCommand;
@@ -40,6 +42,6 @@ class FormMakerProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->register(RouteProvider::class);
     }
 }
