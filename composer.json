@@ -1,11 +1,17 @@
 {
-    "name": "grafite/formmaker",
+    "name": "squatto/grafite-formmaker",
     "description": "A remarkably magical form and input maker tool for Laravel.",
     "license": "MIT",
     "authors": [
         {
+            "name": "Scott Carpenter",
+            "email": "scott@payforstay.com",
+            "role": "Developer"
+        },
+        {
             "name": "Matt Lantz",
-            "email": "mattlantz@gmail.com"
+            "email": "mattlantz@gmail.com",
+            "role": "Original package developer"
         }
     ],
     "require": {
