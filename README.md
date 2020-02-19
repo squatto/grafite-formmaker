@@ -16,12 +16,12 @@ The FormMaker package provides a set of tools for generating HTML forms with as 
 2. OpenSSL
 3. Laravel 6.0+
 
-## Compatability and Support
+## Compatibility and Support
 
 | Laravel Version | Package Tag | Supported |
 |-----------------|-------------|-----------|
-| 6.x | 1.3.7 | yes |
-| 5.4.x - 5.8.x | 1.3.0 - 1.3.6 | no |
+| 6.x | 1.4.0 | yes |
+| 5.4.x - 5.8.x | 1.3.x | no |
 | 5.4.x | 1.1.x | no |
 | 5.3.x | 1.0.x | no |
 
