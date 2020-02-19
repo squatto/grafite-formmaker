@@ -3,6 +3,7 @@
 namespace Grafite\FormMaker\Generators;
 
 use Grafite\FormMaker\Services\InputCalibrator;
+use Illuminate\Support\Str;
 
 /**
  * Generate the CRUD.
@@ -102,8 +103,8 @@ class HtmlGenerator
      */
     public function makeCheckbox($config, $selected, $custom)
     {
-        if (str_contains($config['class'], 'form-control')) {
-            if (str_contains($config['class'], 'form-check-inline')) {
+        if (Str::contains($config['class'], 'form-control')) {
+            if (Str::contains($config['class'], 'form-check-inline')) {
                 $config['class'] = str_replace('form-control', '', $config['class']);
             } else {
                 $config['class'] = str_replace('form-control', 'form-check-input', $config['class']);
