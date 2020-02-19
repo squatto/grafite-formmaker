@@ -3,6 +3,16 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v1.3.7] - 2020-02-17
+
+### Changed
+- Forked package to [squatto/grafite-formmaker](https://github.com/squatto/grafite-formmaker)
+  because the v1.3 branch of [GrafiteInc/FormMaker](https://github.com/GrafiteInc/FormMaker) is no longer being maintained and compatibility ended at Laravel 5.8.x
+  - FormMaker v2.x completely changes the way you create forms and is not backward compatible at all
+- Changed composer package name to `squatto/grafite-formmaker`
+- Require PHP 7.2+, Laravel 6.0+
+- Updated dev dependencies
+
 ## [v1.3.6] - 2019-07-04
 
 ### Fixed
