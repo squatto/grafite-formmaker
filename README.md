@@ -1,5 +1,8 @@
 # FormMaker
 
+> IMPORTANT: this fork's entire purpose is to enable compatibility with Laravel 6.x and beyond.  
+> **OUTSIDE OF ENSURING COMPATIBILITY, NO FEATURE ADDITIONS/CHANGES OR BUG FIXES WILL BE MADE!**
+
 **FormMaker** - A remarkably magical form and input maker tool for Laravel.
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://packagist.org/packages/squatto/grafite-formmaker)
@@ -20,7 +23,7 @@ The FormMaker package provides a set of tools for generating HTML forms with as 
 
 | Laravel Version | Package Tag | Supported |
 |-----------------|-------------|-----------|
-| 6.x | 1.4.0 | yes |
+| 6.x | 1.4.0 | no |
 | 5.4.x - 5.8.x | 1.3.x | no |
 | 5.4.x | 1.1.x | no |
 | 5.3.x | 1.0.x | no |
