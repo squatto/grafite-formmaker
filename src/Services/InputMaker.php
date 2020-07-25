@@ -224,7 +224,7 @@ class InputMaker
             return '';
         }
 
-        return '<div class="' . config('form-maker.form.help-text-class', 'font-italic text-muted mt-1 ml-2') . '">' . $config['config']['help_text'] . '</div>';
+        return '<small class="' . config('form-maker.form.help-text-class', 'form-text text-muted') . '">' . $config['config']['help_text'] . '</small>';
     }
 
     /**
