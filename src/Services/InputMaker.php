@@ -147,6 +147,7 @@ class InputMaker
         $inputString .= $this->before($config);
         $inputString .= $this->inputStringGenerator($config);
         $inputString .= $this->after($config);
+        $inputString .= $this->helpText($config);
 
         if ($beforeAfterCondition) {
             $inputString .= '</div>';
@@ -208,6 +209,22 @@ class InputMaker
         $after = (isset($config['config']['after'])) ? $config['config']['after'] : '';
 
         return $after;
+    }
+
+    /**
+     * Input help text.
+     *
+     * @param array $config
+     *
+     * @return string
+     */
+    private function helpText($config)
+    {
+        if (empty($config['config']['help_text'])) {
+            return '';
+        }
+
+        return '<div class="' . config('form-maker.form.help-text-class', 'font-italic text-muted mt-1 ml-2') . '">' . $config['config']['help_text'] . '</div>';
     }
 
     /**

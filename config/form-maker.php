@@ -12,6 +12,7 @@ return [
         'group-class' => 'form-group',
         'error-class' => 'has-error',
         'label-class' => 'control-label',
+        'help-text-class' => 'font-italic text-muted mt-1 ml-2',
         'before_after_input_wrapper' => 'input-group',
 
         /*
