@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v1.4.1] - 2020-07-24
+
+### Added
+- Ability to provide help text on inputs
+
 ## [v1.4.0] - 2020-02-17
 
 ### Changed
