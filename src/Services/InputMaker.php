@@ -147,11 +147,12 @@ class InputMaker
         $inputString .= $this->before($config);
         $inputString .= $this->inputStringGenerator($config);
         $inputString .= $this->after($config);
-        $inputString .= $this->helpText($config);
 
         if ($beforeAfterCondition) {
             $inputString .= '</div>';
         }
+
+        $inputString .= $this->helpText($config);
 
         if (config('form-maker.form.orientation') == 'horizontal' && !in_array($method, $this->selectedMethods)) {
             return '<div class="'.config('form-maker.form.input-column', '').'">'.$inputString.'</div>';
