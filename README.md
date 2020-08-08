@@ -15,14 +15,15 @@ The FormMaker package provides a set of tools for generating HTML forms with as 
 
 ## Requirements
 
-1. PHP 7.2+
+1. PHP 7.3+
 2. OpenSSL
-3. Laravel 6.0+
+3. Laravel 7.0+
 
 ## Compatibility and Support
 
 | Laravel Version | Package Tag | Supported |
 |-----------------|-------------|-----------|
+| 7.x | 1.5.x | no |
 | 6.x | 1.4.x | no |
 | 5.4.x - 5.8.x | 1.3.x | no |
 | 5.4.x | 1.1.x | no |
