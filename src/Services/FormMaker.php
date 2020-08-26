@@ -39,6 +39,7 @@ class FormMaker
         'bigint',
         'smallint',
         'relationship',
+        'separator',
     ];
 
     public function __construct()
@@ -219,6 +220,7 @@ class FormMaker
             if ($column === 'id') {
                 $columnConfig = ['type' => 'hidden'];
             }
+
             $input = $this->inputMaker->create($column, $columnConfig, $object, $class, $reformatted, $populated);
             $formBuild[] = $this->formBuilder($view, $errors, $columnConfig, $column, $input);
         }
@@ -290,9 +292,17 @@ class FormMaker
         }
 
         if (is_null($view)) {
-            $formBuild = '<div class="'.$formGroupClass.' '.$errorHighlight.'">';
+            $formBuild = '';
+
+            if (! isset($field['type']) || $field['type'] !== 'separator') {
+                $formBuild .= '<div class="'.$formGroupClass.' '.$errorHighlight.'">';
+            }
+
             $formBuild .= $this->formContentBuild($field, $column, $input, $errorMessage);
-            $formBuild .= '</div>';
+
+            if (! isset($field['type']) || $field['type'] !== 'separator') {
+                $formBuild .= '</div>';
+            }
         } else {
             $formBuild = View::make($view, [
                 'labelFor' => ucfirst($column),
@@ -331,9 +341,16 @@ class FormMaker
 
         $name = ucfirst($this->inputCalibrator->getName($column, $field));
 
-        $formBuild = '<label class="'.trim($formLabelClass.' '.$labelColumn).'" for="'.$name.'">';
-        $formBuild .= $this->inputCalibrator->cleanString($this->columnLabel($field, $column));
-        $formBuild .= '</label>'.$input.$this->errorMessage($errorMessage);
+        $formBuild = '';
+
+        if (! isset($field['type']) || $field['type'] !== 'separator') {
+            $formBuild .= '<label class="'.trim($formLabelClass.' '.$labelColumn).'" for="'.$name.'">';
+            $formBuild .= $this->inputCalibrator->cleanString($this->columnLabel($field, $column));
+            $formBuild .= '</label>';
+        }
+
+        $formBuild .= $input;
+        $formBuild .= $this->errorMessage($errorMessage);
 
         if (isset($field['type'])) {
             if (in_array($field['type'], ['radio', 'checkbox'])) {
