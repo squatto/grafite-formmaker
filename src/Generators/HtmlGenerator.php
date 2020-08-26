@@ -176,7 +176,8 @@ class HtmlGenerator
         }
 
         if (isset($config['config']['nullable']) && $config['config']['nullable'] === true) {
-            $config['config']['options']['- Select -'] = null;
+            $nullText = $config['config']['null_text'] ?? '- Select -';
+            $config['config']['options'][$nullText] = null;
         }
         foreach ($items as $item) {
             $config['config']['options'][$item->$label] = $item->$value;
