@@ -241,6 +241,10 @@ class InputMaker
      */
     public function prepareTheClass($class, $config)
     {
+        if (isset($config['override_class'])) {
+            return $config['override_class'];
+        }
+
         $finalizedClass = $class;
 
         if (isset($config['class'])) {
