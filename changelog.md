@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v1.5.3] - 2020-08-26
+
+### Fixed
+- Fixed the bootstrap classes on checkbox/radio inputs
+
 ## [v1.5.2] - 2020-08-26
 
 ### Added
