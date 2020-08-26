@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v1.5.1] - 2020-08-26
+
+### Added
+- Added "separator" field type that outputs a simple `<hr>` (plus any custom attributes)
+- Added "override_class" field option that replaces the entire class with the option value rather
+  than appending it to the class from the package config the way that the "class" field option does
+
 ## [v1.5.0] - 2020-08-08
 
 ### Changed

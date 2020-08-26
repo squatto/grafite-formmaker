@@ -234,6 +234,24 @@ class HtmlGenerator
     }
 
     /**
+     * Make a separator
+     *
+     * @param array $config
+     * @param string $population
+     * @param mixed $custom
+     *
+     * @return string
+     */
+    public function makeSeparator($config, $population, $custom)
+    {
+        if (Str::contains($config['class'], 'form-control')) {
+            $config['class'] = str_replace('form-control', '', $config['class']);
+        }
+
+        return '<hr ' . $this->processCustom($custom) . ' id="' . $this->getId($config) . '" class="' . $config['class'] . '" />';
+    }
+
+    /**
      * Is the config a multiple?
      *
      * @param array  $config

@@ -83,6 +83,17 @@ class HtmlGeneratorTest extends TestCase
         $this->assertEquals('<input  id="Test" selected type="radio" name="test" class="customClass">', $test);
     }
 
+    public function testMakeSeparator()
+    {
+        $test = $this->html->makeSeparator([
+            'name' => 'test',
+            'class' => 'customClass',
+        ], '', '');
+
+        $this->assertTrue(is_string($test));
+        $this->assertEquals('<hr  id="Test" class="customClass" />', $test);
+    }
+
     public function testMakeInputString()
     {
         $test = $this->html->makeHTMLInputString([

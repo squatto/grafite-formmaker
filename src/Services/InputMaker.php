@@ -35,6 +35,9 @@ class InputMaker
             'radio',
             'radio-inline',
         ],
+        'separator' => [
+            'separator',
+        ],
         'relationship' => [
             'relationship',
         ],
@@ -43,6 +46,7 @@ class InputMaker
     protected $standardMethods = [
         'makeHidden',
         'makeText',
+        'makeSeparator',
     ];
 
     protected $selectedMethods = [
@@ -237,6 +241,10 @@ class InputMaker
      */
     public function prepareTheClass($class, $config)
     {
+        if (isset($config['override_class'])) {
+            return $config['override_class'];
+        }
+
         $finalizedClass = $class;
 
         if (isset($config['class'])) {
@@ -397,6 +405,9 @@ class InputMaker
 
             case in_array($type, $this->inputGroups['relationship']):
                 return 'makeRelationship';
+
+            case in_array($type, $this->inputGroups['separator']):
+                return 'makeSeparator';
 
             default:
                 return 'makeHTMLInputString';
