@@ -331,7 +331,7 @@ class FormMaker
     {
         $labelColumn = $labelCheckableColumn = '';
         $singleLineCheckType = false;
-        $formLabelClass = config('form-maker.form.label-class', 'control-label');
+        $formLabelClass = config('form-maker.form.checkbox-label-class', config('form-maker.form.label-class', 'control-label'));
 
         if (config('form-maker.form.orientation') == 'horizontal') {
             $labelColumn = config('form-maker.form.label-column');
@@ -354,7 +354,7 @@ class FormMaker
 
         if (isset($field['type'])) {
             if (in_array($field['type'], ['radio', 'checkbox'])) {
-                $formBuild = '<div class="'.$field['type'].'">';
+                $formBuild = '<div class="form-check '.$field['type'].'">';
                 if ($singleLineCheckType) {
                     $formBuild .= '<div class="'.$labelCheckableColumn.'">';
                 }

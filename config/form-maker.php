@@ -12,6 +12,7 @@ return [
         'group-class' => 'form-group',
         'error-class' => 'has-error',
         'label-class' => 'control-label',
+        'checkbox-label-class' => 'form-check-label',
         'help-text-class' => 'form-text text-muted',
         'before_after_input_wrapper' => 'input-group',
 
