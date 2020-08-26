@@ -331,7 +331,12 @@ class FormMaker
     {
         $labelColumn = $labelCheckableColumn = '';
         $singleLineCheckType = false;
-        $formLabelClass = config('form-maker.form.checkbox-label-class', config('form-maker.form.label-class', 'control-label'));
+
+        if (isset($field['type']) && in_array($field['type'], ['radio', 'checkbox'])) {
+            $formLabelClass = config('form-maker.form.checkbox-label-class', config('form-maker.form.label-class', 'control-label'));
+        } else {
+            $formLabelClass = config('form-maker.form.label-class', 'control-label');
+        }
 
         if (config('form-maker.form.orientation') == 'horizontal') {
             $labelColumn = config('form-maker.form.label-column');
