@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v1.5.2] - 2020-08-26
+
+### Added
+- Added "null_text" field option to change the text of the null `<option>` in a nullable `<select>`
+
 ## [v1.5.1] - 2020-08-26
 
 ### Added
