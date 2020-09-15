@@ -1,6 +1,6 @@
 # FormMaker
 
-> IMPORTANT: this fork's entire purpose is to enable compatibility with Laravel 6.x and beyond.  
+> IMPORTANT: this fork's entire purpose is to enable compatibility with Laravel 8.x and beyond.  
 > **OUTSIDE OF ENSURING COMPATIBILITY, NO FEATURE ADDITIONS/CHANGES OR BUG FIXES WILL BE MADE!**
 
 **FormMaker** - A remarkably magical form and input maker tool for Laravel.
@@ -17,12 +17,13 @@ The FormMaker package provides a set of tools for generating HTML forms with as 
 
 1. PHP 7.3+
 2. OpenSSL
-3. Laravel 7.0+
+3. Laravel 8.0+
 
 ## Compatibility and Support
 
 | Laravel Version | Package Tag | Supported |
 |-----------------|-------------|-----------|
+| 8.x | 1.6.x | no |
 | 7.x | 1.5.x | no |
 | 6.x | 1.4.x | no |
 | 5.4.x - 5.8.x | 1.3.x | no |
