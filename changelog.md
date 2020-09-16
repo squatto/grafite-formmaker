@@ -3,6 +3,36 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v1.5.4] - 2020-09-16
+
+### Added
+- Added "group_class" field option to append class(es) to the field's group/container `<div>`
+
+Example field config:
+
+```php
+[
+    'agreement' => [
+        'type'        => 'checkbox',
+        'group_class' => 'user-agreement',
+        'alt_name'    => 'I Agree',
+    ],
+];
+```
+
+Resulting HTML. Note the container `<div>` class.
+
+```html
+<div class="form-group user-agreement">
+    <div class="form-check checkbox">
+        <label for="Agreement" class="form-check-label">
+            <input id="Agreement" type="checkbox" name="agreement" class="form-check-input">
+            I Agree
+        </label>
+    </div>
+</div>
+```
+
 ## [v1.5.3] - 2020-08-26
 
 ### Fixed
