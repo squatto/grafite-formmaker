@@ -291,11 +291,15 @@ class FormMaker
             $errorMessage = $errors->get($column);
         }
 
+        if (! empty($field['group_class'])) {
+            $formGroupClass .= ' ' . $field['group_class'];
+        }
+
         if (is_null($view)) {
             $formBuild = '';
 
             if (! isset($field['type']) || $field['type'] !== 'separator') {
-                $formBuild .= '<div class="'.$formGroupClass.' '.$errorHighlight.'">';
+                $formBuild .= '<div class="' . trim($formGroupClass . ' ' . $errorHighlight) . '">';
             }
 
             $formBuild .= $this->formContentBuild($field, $column, $input, $errorMessage);
