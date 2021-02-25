@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v1.6.2] - 2021-02-25
+
+### Fixed
+- Ensure that setting `default_value` on a field is seen as the field's value being populated.
+  This allows you to set a default value on a `<textarea>`, for instance.
+
 ## [v1.6.1] - 2020-09-16
 
 ### Changed
