@@ -287,6 +287,7 @@ class InputMaker
             $inputConfig['populated'] = true;
             $inputConfig['objectValue'] = $inputConfig['inputs'][$name];
         } elseif (isset($inputConfig['config']['default_value'])) {
+            $inputConfig['populated'] = true;
             $inputConfig['objectValue'] = $inputConfig['config']['default_value'];
         }
 
