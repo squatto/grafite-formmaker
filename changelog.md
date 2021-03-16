@@ -3,6 +3,22 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v1.6.3] - 2021-03-16
+
+### Added
+- Added "tab" field type to make it possible to separate your form fields into tabs
+  This is done using [Bootstrap navigation tabs](https://getbootstrap.com/docs/4.0/components/navs/#tabs)
+
+Example field config:
+
+```php
+[
+    'type'   => 'tab',
+    'label'  => 'Pricing',
+    'active' => true,
+];
+````
+
 ## [v1.6.2] - 2021-02-25
 
 ### Fixed
