@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v1.6.4] - 2021-03-16
+
+### Fixed
+- Added tab rendering to all possible form generation methods (table, array, object)
+
 ## [v1.6.3] - 2021-03-16
 
 ### Added
