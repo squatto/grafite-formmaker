@@ -38,6 +38,9 @@ class InputMaker
         'separator' => [
             'separator',
         ],
+        'tab' => [
+            'tab',
+        ],
         'relationship' => [
             'relationship',
         ],
@@ -47,6 +50,7 @@ class InputMaker
         'makeHidden',
         'makeText',
         'makeSeparator',
+        'makeTab',
     ];
 
     protected $selectedMethods = [
@@ -409,6 +413,9 @@ class InputMaker
 
             case in_array($type, $this->inputGroups['separator']):
                 return 'makeSeparator';
+
+            case in_array($type, $this->inputGroups['tab']):
+                return 'makeTab';
 
             default:
                 return 'makeHTMLInputString';

@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
  */
 class HtmlGenerator
 {
+    protected $inTab = false;
+
     /*
     |--------------------------------------------------------------------------
     | Standard HTML Inputs
@@ -250,6 +252,43 @@ class HtmlGenerator
         }
 
         return '<hr ' . $this->processCustom($custom) . ' id="' . $this->getId($config) . '" class="' . $config['class'] . '" />';
+    }
+
+    /**
+     * Make a tab
+     *
+     * @param array $config
+     * @param string $population
+     * @param mixed $custom
+     *
+     * @return string
+     */
+    public function makeTab($config, $population, $custom)
+    {
+        $return = '';
+
+        if ($this->inTab) {
+            $return .= '</div>';
+        }
+
+        if (Str::contains($config['class'], 'form-control')) {
+            $config['class'] = str_replace('form-control', '', $config['class']);
+        }
+
+        $slug = Str::slug($config['config']['label']);
+        $tabId = 'tab-' . $slug;
+        $paneId = 'pane-' . $slug;
+        $active = $config['config']['active'] ?? false;
+
+        $return .= '<div class="tab-pane fade ' . ($active ? 'show active' : '') . ' ' . $config['class'] . '" ' .
+                   $this->processCustom($custom) .
+                   'id="' . $paneId . '" ' .
+                   'role="tabpanel" ' .
+                   'aria-labelledby="' . $tabId . '">';
+
+        $this->inTab = true;
+
+        return $return;
     }
 
     /**

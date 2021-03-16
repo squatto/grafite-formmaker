@@ -52,5 +52,6 @@ return [
         'radio'             => null,
         'radio-inline'      => null,
         'separator'         => null,
+        'tab'               => null,
     ]
 ];

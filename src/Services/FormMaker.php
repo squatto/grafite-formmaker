@@ -2,11 +2,11 @@
 
 namespace Grafite\FormMaker\Services;
 
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 
 /**
  * FormMaker helper to make table and object form mapping easy.
@@ -40,7 +40,10 @@ class FormMaker
         'smallint',
         'relationship',
         'separator',
+        'tab',
     ];
+
+    protected $tabs = [];
 
     public function __construct()
     {
@@ -213,6 +216,12 @@ class FormMaker
         $columns = $this->cleanupIdAndTimeStamps($columns, $timestamps, false);
         $errors = $this->getFormErrors();
 
+        $hasTabs = $this->hasTabs($columns);
+
+        if ($hasTabs) {
+            $formBuild[] = $this->startTabs($columns);
+        }
+
         foreach ($columns as $column => $columnConfig) {
             if (is_numeric($column)) {
                 $column = $columnConfig;
@@ -225,7 +234,80 @@ class FormMaker
             $formBuild[] = $this->formBuilder($view, $errors, $columnConfig, $column, $input);
         }
 
+        if ($hasTabs) {
+            $formBuild[] = $this->endTabs($columns);
+        }
+
         return $this->buildUsingColumns($formBuild, config('form-maker.form.theme'));
+    }
+
+    public function hasTabs(array $columns): bool
+    {
+        return filled($this->getTabs($columns));
+    }
+
+    public function getTabs(array $columns): array
+    {
+        if (! empty($this->tabs)) {
+            return $this->tabs;
+        }
+
+        return $this->tabs = collect($columns)
+            ->filter(function (array $config) {
+                return $config['type'] === 'tab';
+            })
+            ->mapWithKeys(function (array $config, string $column) {
+                $slug = Str::slug($config['label']);
+                $config['tab_id'] = 'tab-' . $slug;
+                $config['pane_id'] = 'pane-' . $slug;
+                $config['active'] = $config['active'] ?? false;
+
+                return [$column => $config];
+            })
+            ->toArray();
+    }
+
+    public function startTabs(array $columns): string
+    {
+        $return = '
+            <ul class="nav nav-tabs" id="formTabs" role="tablist">
+        ';
+
+        foreach ($this->getTabs($columns) as $tab) {
+            $tabId = $tab['tab_id'];
+            $paneId = $tab['pane_id'];
+            $label = $tab['label'];
+            $active = $tab['active'] ? 'active' : '';
+            $selected = $tab['active'] ? 'true' : 'false';
+
+            $return .= '<li class="nav-item">' .
+                       '<a ' .
+                       'class="nav-link ' . $active . '" ' .
+                       'id="' . $tabId . '" ' .
+                       'data-toggle="tab" ' .
+                       'href="#' . $paneId . '" ' .
+                       'role="tab" ' .
+                       'aria-controls="' . $paneId . '" ' .
+                       'aria-selected="' . $selected . '">' .
+                       $label .
+                       '</a>' .
+                       '</li>';
+        }
+
+        $return .= '
+            </ul>
+            <div class="tab-content" id="formTabsContent">
+        ';
+
+        return $return;
+    }
+
+    public function endTabs(array $columns): string
+    {
+        $this->tabs = [];
+
+        return '</div>' . // end the last tab
+            '</div>'; // end #formTabsContent
     }
 
     /**
@@ -298,13 +380,13 @@ class FormMaker
         if (is_null($view)) {
             $formBuild = '';
 
-            if (! isset($field['type']) || $field['type'] !== 'separator') {
+            if (! isset($field['type']) || ! in_array($field['type'], ['separator', 'tab'])) {
                 $formBuild .= '<div class="' . trim($formGroupClass . ' ' . $errorHighlight) . '">';
             }
 
             $formBuild .= $this->formContentBuild($field, $column, $input, $errorMessage);
 
-            if (! isset($field['type']) || $field['type'] !== 'separator') {
+            if (! isset($field['type']) || ! in_array($field['type'], ['separator', 'tab'])) {
                 $formBuild .= '</div>';
             }
         } else {
@@ -352,7 +434,7 @@ class FormMaker
 
         $formBuild = '';
 
-        if (! isset($field['type']) || $field['type'] !== 'separator') {
+        if (! isset($field['type']) || ! in_array($field['type'], ['separator', 'tab'])) {
             $formBuild .= '<label class="'.trim($formLabelClass.' '.$labelColumn).'" for="'.$name.'">';
             $formBuild .= $this->inputCalibrator->cleanString($this->columnLabel($field, $column));
             $formBuild .= '</label>';
