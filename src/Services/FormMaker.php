@@ -2,6 +2,7 @@
 
 namespace Grafite\FormMaker\Services;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
@@ -128,6 +129,9 @@ class FormMaker
             $formBuild[] = $this->formBuilder($view, $errors, $columnConfig, $column, $input);
         }
 
+        // if applicable, wrap the form build in the necessary tab markup
+        $this->checkTabs($columns, $formBuild);
+
         return $this->buildUsingColumns($formBuild, config('form-maker.form.theme'));
     }
 
@@ -178,6 +182,9 @@ class FormMaker
             $formBuild[] = $this->formBuilder($view, $errors, $columnConfig, $column, $input);
         }
 
+        // if applicable, wrap the form build in the necessary tab markup
+        $this->checkTabs($columns, $formBuild);
+
         return $this->buildUsingColumns($formBuild, config('form-maker.form.theme'));
     }
 
@@ -216,12 +223,6 @@ class FormMaker
         $columns = $this->cleanupIdAndTimeStamps($columns, $timestamps, false);
         $errors = $this->getFormErrors();
 
-        $hasTabs = $this->hasTabs($columns);
-
-        if ($hasTabs) {
-            $formBuild[] = $this->startTabs($columns);
-        }
-
         foreach ($columns as $column => $columnConfig) {
             if (is_numeric($column)) {
                 $column = $columnConfig;
@@ -234,11 +235,28 @@ class FormMaker
             $formBuild[] = $this->formBuilder($view, $errors, $columnConfig, $column, $input);
         }
 
-        if ($hasTabs) {
+        // if applicable, wrap the form build in the necessary tab markup
+        $this->checkTabs($columns, $formBuild);
+
+        return $this->buildUsingColumns($formBuild, config('form-maker.form.theme'));
+    }
+
+    /**
+     * If applicable, wrap the form build in the necessary tab markup
+     *
+     * @param array $columns
+     * @param array &$formBuild
+     *
+     * @return array
+     */
+    protected function checkTabs(array $columns, array &$formBuild): array
+    {
+        if ($this->hasTabs($columns)) {
+            $formBuild = Arr::prepend($formBuild, $this->startTabs($columns));
             $formBuild[] = $this->endTabs($columns);
         }
 
-        return $this->buildUsingColumns($formBuild, config('form-maker.form.theme'));
+        return $formBuild;
     }
 
     public function hasTabs(array $columns): bool
