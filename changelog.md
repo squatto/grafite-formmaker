@@ -3,6 +3,41 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v1.6.5] - 2021-03-17
+
+### Added
+- Added "html" field type to output raw HTML.
+- This can be used to do things like containing fields in a Bootstrap card
+  by outputting the card opening HTML, then the fields, then the card closing HTML
+
+This example config would contain the "Title" and "Description" fields within a Bootstrap card:
+
+```php
+[
+    '_html-info-card-open' => [
+        'type' => 'html',
+        'html' => '
+            <div class="card">
+                <h4 class="card-header">Product Information</h4>
+                <div class="card-body">
+        ',
+    ],
+    'title' => [
+        'type' => 'string',
+    ],
+    'description' => [
+        'type' => 'string',
+    ],
+    '_html-info-card-close' => [
+        'type' => 'html',
+        'html' => '
+                </div>
+            </div>
+        ',
+    ],
+];
+````
+
 ## [v1.6.4] - 2021-03-16
 
 ### Fixed
