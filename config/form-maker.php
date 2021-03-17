@@ -51,6 +51,7 @@ return [
         'checkbox-inline'   => null,
         'radio'             => null,
         'radio-inline'      => null,
+        'html'              => null,
         'separator'         => null,
         'tab'               => null,
     ]

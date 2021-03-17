@@ -38,6 +38,9 @@ class InputMaker
         'separator' => [
             'separator',
         ],
+        'html' => [
+            'html',
+        ],
         'tab' => [
             'tab',
         ],
@@ -49,6 +52,7 @@ class InputMaker
     protected $standardMethods = [
         'makeHidden',
         'makeText',
+        'makeHtml',
         'makeSeparator',
         'makeTab',
     ];
@@ -410,6 +414,9 @@ class InputMaker
 
             case in_array($type, $this->inputGroups['relationship']):
                 return 'makeRelationship';
+
+            case in_array($type, $this->inputGroups['html']):
+                return 'makeHtml';
 
             case in_array($type, $this->inputGroups['separator']):
                 return 'makeSeparator';

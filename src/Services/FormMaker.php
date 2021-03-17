@@ -40,6 +40,14 @@ class FormMaker
         'bigint',
         'smallint',
         'relationship',
+        'html',
+        'separator',
+        'tab',
+    ];
+
+    /** These types do not output labels and aren't wrapped in a form group <div> */
+    protected $nonStandardTypes = [
+        'html',
         'separator',
         'tab',
     ];
@@ -271,8 +279,8 @@ class FormMaker
         }
 
         return $this->tabs = collect($columns)
-            ->filter(function (array $config) {
-                return $config['type'] === 'tab';
+            ->filter(function ($config) {
+                return is_array($config) && $config['type'] === 'tab';
             })
             ->mapWithKeys(function (array $config, string $column) {
                 $slug = Str::slug($config['label']);
@@ -398,13 +406,13 @@ class FormMaker
         if (is_null($view)) {
             $formBuild = '';
 
-            if (! isset($field['type']) || ! in_array($field['type'], ['separator', 'tab'])) {
+            if (! isset($field['type']) || ! in_array($field['type'], $this->nonStandardTypes)) {
                 $formBuild .= '<div class="' . trim($formGroupClass . ' ' . $errorHighlight) . '">';
             }
 
             $formBuild .= $this->formContentBuild($field, $column, $input, $errorMessage);
 
-            if (! isset($field['type']) || ! in_array($field['type'], ['separator', 'tab'])) {
+            if (! isset($field['type']) || ! in_array($field['type'], $this->nonStandardTypes)) {
                 $formBuild .= '</div>';
             }
         } else {
@@ -452,7 +460,7 @@ class FormMaker
 
         $formBuild = '';
 
-        if (! isset($field['type']) || ! in_array($field['type'], ['separator', 'tab'])) {
+        if (! isset($field['type']) || ! in_array($field['type'], $this->nonStandardTypes)) {
             $formBuild .= '<label class="'.trim($formLabelClass.' '.$labelColumn).'" for="'.$name.'">';
             $formBuild .= $this->inputCalibrator->cleanString($this->columnLabel($field, $column));
             $formBuild .= '</label>';
