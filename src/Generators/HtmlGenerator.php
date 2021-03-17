@@ -237,6 +237,20 @@ class HtmlGenerator
     }
 
     /**
+     * Return raw HTML
+     *
+     * @param array $config
+     * @param string $population
+     * @param mixed $custom
+     *
+     * @return string
+     */
+    public function makeHtml($config, $population, $custom)
+    {
+        return $config['config']['html'] ?? $config['html'] ?? '';
+    }
+
+    /**
      * Make a separator
      *
      * @param array $config
@@ -275,7 +289,7 @@ class HtmlGenerator
             $config['class'] = str_replace('form-control', '', $config['class']);
         }
 
-        $slug = Str::slug($config['config']['label']);
+        $slug = Str::slug($config['config']['label'] ?? $config['label']);
         $tabId = 'tab-' . $slug;
         $paneId = 'pane-' . $slug;
         $active = $config['config']['active'] ?? false;

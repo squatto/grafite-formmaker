@@ -83,6 +83,16 @@ class HtmlGeneratorTest extends TestCase
         $this->assertEquals('<input  id="Test" selected type="radio" name="test" class="customClass">', $test);
     }
 
+    public function testMakeHtml()
+    {
+        $test = $this->html->makeHtml([
+            'html' => '<p>This is<small>a test</small> of raw HTML</p>',
+        ], '', '');
+
+        $this->assertTrue(is_string($test));
+        $this->assertEquals('<p>This is<small>a test</small> of raw HTML</p>', $test);
+    }
+
     public function testMakeSeparator()
     {
         $test = $this->html->makeSeparator([
@@ -92,6 +102,18 @@ class HtmlGeneratorTest extends TestCase
 
         $this->assertTrue(is_string($test));
         $this->assertEquals('<hr  id="Test" class="customClass" />', $test);
+    }
+
+    public function testMakeTab()
+    {
+        $test = $this->html->makeTab([
+            'label' => 'Test',
+            'active' => true,
+            'class' => 'customClass',
+        ], '', '');
+
+        $this->assertTrue(is_string($test));
+        $this->assertEquals('<div class="tab-pane fade  customClass" id="pane-test" role="tabpanel" aria-labelledby="tab-test">', $test);
     }
 
     public function testMakeInputString()
