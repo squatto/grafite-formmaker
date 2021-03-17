@@ -247,7 +247,7 @@ class HtmlGenerator
      */
     public function makeHtml($config, $population, $custom)
     {
-        return $config['html'] ?? '';
+        return $config['config']['html'] ?? $config['html'] ?? '';
     }
 
     /**
