@@ -290,8 +290,8 @@ class HtmlGenerator
         }
 
         $slug = Str::slug($config['config']['label'] ?? $config['label']);
-        $tabId = 'tab-' . $slug;
-        $paneId = 'pane-' . $slug;
+        $tabId = 'tab-btn-' . $slug;
+        $paneId = 'tab-' . $slug;
         $active = $config['config']['active'] ?? false;
 
         $return .= '<div class="tab-pane fade ' . ($active ? 'show active' : '') . ' ' . $config['class'] . '" ' .

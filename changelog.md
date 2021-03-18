@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+
+## [v1.6.6] - 2021-03-18
+
+### Changed
+- Change the IDs used within tabs/tab panes
+
 ## [v1.6.5] - 2021-03-17
 
 ### Added

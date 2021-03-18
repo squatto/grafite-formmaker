@@ -284,8 +284,8 @@ class FormMaker
             })
             ->mapWithKeys(function (array $config, string $column) {
                 $slug = Str::slug($config['label']);
-                $config['tab_id'] = 'tab-' . $slug;
-                $config['pane_id'] = 'pane-' . $slug;
+                $config['tab_id'] = 'tab-btn-' . $slug;
+                $config['pane_id'] = 'tab-' . $slug;
                 $config['active'] = $config['active'] ?? false;
 
                 return [$column => $config];

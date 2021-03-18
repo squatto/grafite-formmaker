@@ -113,7 +113,7 @@ class HtmlGeneratorTest extends TestCase
         ], '', '');
 
         $this->assertTrue(is_string($test));
-        $this->assertEquals('<div class="tab-pane fade  customClass" id="pane-test" role="tabpanel" aria-labelledby="tab-test">', $test);
+        $this->assertEquals('<div class="tab-pane fade  customClass" id="tab-test" role="tabpanel" aria-labelledby="tab-btn-test">', $test);
     }
 
     public function testMakeInputString()
